@@ -135,6 +135,10 @@ timer.h               Simple timer for profiling.
 Makefile              Makefile for building the MEX code.
 cascade-2pass.cc      Experimental version not described in the paper
                       that is about 1.25-1.75x faster.
+fconv_var_dim.cc      Same as fconvMT.cc from voc-release4 -- supports
+                      features and filters with variable dimension
+                      (voc-release4.01 uses fconvsse.cc by default, which
+                       assumes HOG features have a fixed dimensionality)
 
 Threshold Training
 ---
