@@ -213,22 +213,20 @@ static void init(const mxArray *prhs[]) {
   PCONV[1] = new double[N];
   DT[0]    = new double[N];
   DT[1]    = new double[N];
-  for (int i = 0; i < N; i++) {
-    PCONV[0][i] = -INFINITY;
-    PCONV[1][i] = -INFINITY;
-    DT[0][i]    = -INFINITY;
-    DT[1][i]    = -INFINITY;
-  }
+  fill(PCONV[0], PCONV[0]+N, -INFINITY);
+  fill(PCONV[1], PCONV[1]+N, -INFINITY);
+  fill(DT[0], DT[0]+N, -INFINITY);
+  fill(DT[1], DT[1]+N, -INFINITY);
 
   // each data pyramid (convolution and distance transform)
   // is stored in a 1D array.  since pyramid levels have
   // different sizes, we build an array of offset values
   // in order to index by level.  the last offset is the
   // total length of the pyramid storage array.
-  LOFFCONV = new int[MODEL->numlevels+1];
-  LOFFDT = new int[MODEL->numlevels+1];
+  LOFFCONV    = new int[MODEL->numlevels+1];
+  LOFFDT      = new int[MODEL->numlevels+1];
   LOFFCONV[0] = 0;
-  LOFFDT[0] = 0;
+  LOFFDT[0]   = 0;
   for (int i = 1; i < MODEL->numlevels+1; i++) {
     LOFFCONV[i] = LOFFCONV[i-1] + MODEL->numpartfilters*MODEL->featdimsprod[i-1];
     LOFFDT[i]   = LOFFDT[i-1]   + MODEL->numdefparams*MODEL->featdimsprod[i-1];
