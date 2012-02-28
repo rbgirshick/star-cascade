@@ -183,10 +183,10 @@ static inline double partscore(int L, int defindex, int pfind,
   const mwSize *A_dims = MODEL->featdims[L];
   const mwSize *B_dims = MODEL->partfilterdims[pfind];
   yend = (B_dims[0] + yend > A_dims[0])
-          ? yend = A_dims[0] - B_dims[0]
+          ? A_dims[0] - B_dims[0]
           : yend;
   xend = (B_dims[1] + xend > A_dims[1])
-          ? xend = A_dims[1] - B_dims[1]
+          ? A_dims[1] - B_dims[1]
           : xend;
 
   // do convolution and distance transform in region
@@ -288,7 +288,6 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
   init(prhs);
 
   const mxArray *rootscores = prhs[3];
-  int numrootlocs           = (int)mxGetScalar(prhs[4]);
   const double *scales      = mxGetPr(prhs[5]);
   padx                      = (int)mxGetScalar(prhs[6]);
   pady                      = (int)mxGetScalar(prhs[7]);

@@ -62,7 +62,6 @@ void Model::initmodel(const mxArray *model) {
   }
   const mxArray *cascadeinfo = F(model, "cascade");
   const mxArray *orderinfo   = F(cascadeinfo, "order");
-  const mxArray *mxh         = F(cascadeinfo, "h");
   const mxArray *mxt         = F(cascadeinfo, "t");
   partorder                  = new int*[numcomponents];
   offsets                    = new double[numcomponents];

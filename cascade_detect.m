@@ -21,7 +21,7 @@ s = 0;  % holds the amount of temp storage needed by cascade()
 for i = 1:length(pyra.scales)
   s = s + size(pyra.feat{i},1)*size(pyra.feat{i},2);
   if i > model.interval
-    scores = fconv(projpyra.feat{i}, rootfilters, 1, numrootfilters);
+    scores = fconv_var_dim(projpyra.feat{i}, rootfilters, 1, numrootfilters);
     for c = 1:model.numcomponents
       u = model.components{c}.rootindex;
       v = model.components{c}.offsetindex;
